@@ -47,6 +47,21 @@
 - `.gitignore` — исключения Git
 - `README.md` — описание проекта
 
+## Как запустить
+
+1. Клонировать репозиторий:
+
+       git clone https://github.com/elizabet24/project.git
+       cd project
+
+2. Установить зависимости:
+
+       pip install pandas numpy matplotlib seaborn statsmodels scipy jupyter
+
+3. Скачать данные с Kaggle и положить в `data/raw/`.
+
+4. Открыть `notebooks/01_eda.ipynb` и запустить все ячейки.
+
 ## Источник данных
 
 Alfa Bank PD Credit History — Kaggle:  
