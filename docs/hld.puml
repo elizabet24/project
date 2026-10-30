@@ -1,0 +1,27 @@
+@startuml
+skinparam componentStyle rectangle
+
+actor "Аналитик" as User
+actor "Разработчик" as Dev
+cloud "Источник данных Kaggle" as Kaggle
+
+rectangle "EDA Credit Risk Pipeline" {
+    component "Data Ingestion\n(Загрузка CSV)" as Loader
+    component "Preprocessor\n(Очистка, пропуски, лаги)" as Prep
+    component "Analyzer\n(Статистика, IQR, z-score)" as Analyzer
+    component "Visualizer\n(Графики, ACF/PACF)" as Viz
+    component "Report Generator\n(HTML/Markdown отчет)" as Report
+}
+
+database "Local Storage\n(CSV / Parquet)" as DB
+
+User --> Loader : Запускает пайплайн
+Dev --> Loader : Настраивает параметры
+Kaggle --> Loader : Предоставляет данные
+Loader --> DB : Сохраняет сырые данные
+DB --> Prep : Читает данные
+Prep --> Analyzer : Передает данные
+Analyzer --> Viz : Отдает метрики
+Viz --> Report : Передает графики
+Report --> User : Итоговый EDA-отчет
+@enduml
